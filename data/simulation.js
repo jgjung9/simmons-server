@@ -31,7 +31,8 @@ export async function create(simulation) {
 export async function getById(id) {
     return db
         .execute('SELECT * FROM Simulations WHERE ID = (?)', [id])
-        .then((result) => result[0]);
+        .then((result) => result[0])
+        .catch(console.error);
 }
 
 export async function remove(id) {
