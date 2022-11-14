@@ -1,6 +1,6 @@
 import { db } from '../database/database.js';
 
-const SELECT = `SELECT * FROM SIMULATIONS`;
+const SELECT = `SELECT * FROM Simulations`;
 
 export async function getAll() {
     return db
