@@ -32,8 +32,9 @@ export async function CreateSimulation(req, res) {
 }
 
 export async function CreateSimulationFile(req, res) {
-    const path = req.query.path;
-    const data = req.body.data;
+    const path = `file/${req.params.path}`;
+    const data = req.body;
+    let isSuccess = false;
     fs.promises
         .writeFile(`./public/${path}`, data)
         .then(res.sendStatus(200))
@@ -44,8 +45,9 @@ export async function CreateSimulationFile(req, res) {
 }
 
 export async function CreeateSimulationImage(req, res) {
-    const path = req.query.path;
-    const data = req.body.data;
+    const path = `img/${req.params.path}`;
+    const data = req.body;
+    let isSuccess = false;
     fs.promises
         .writeFile(`./public/${path}`, data)
         .then(res.sendStatus(200))
@@ -57,7 +59,10 @@ export async function CreeateSimulationImage(req, res) {
 
 export async function DeleteSimulation(req, res) {
     const id = req.params.id;
+    const simulation = await simulationRepository.getById(id);
     const isSuccess = await simulationRepository.remove(id);
-    console.log(isSuccess);
+    console.log(simulation);
+    fs.rmSync(`./public/${simulation[0].File}`);
+    fs.rmSync(`./public/${simulation[0].Image}`);
     isSuccess ? res.sendStatus(209) : res.sendStatus(404);
 }

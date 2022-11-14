@@ -10,6 +10,7 @@ import simRouter from './router/simulation.js';
 const app = express();
 
 app.use(express.json());
+app.use(express.raw());
 app.use(express.static('public'));
 app.use(cors());
 app.use(morgan('tiny'));

@@ -10,8 +10,8 @@ router.post('/', simulationController.CreateSimulation);
 
 router.delete('/:id', simulationController.DeleteSimulation);
 
-router.post('/file/:path', simulationController.CreateSimulationFile);
+router.put('/file/:path', simulationController.CreateSimulationFile);
 
-router.post('/img/:path', simulationController.CreateSimulationFile);
+router.put('/img/:path', simulationController.CreeateSimulationImage);
 
 export default router;
